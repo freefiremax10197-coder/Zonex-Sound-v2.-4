@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ZONEX Control Room</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#0a0720;--panel:#130e30;--panel2:#1a1442;--line:#2b2266;--violet:#7c6cff;--cyan:#3be3d8;--text:#f2f0ff;--muted:#9d97d6;--bad:#ff6b81;--ok:#2fd9a3}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Sora','Segoe UI',Roboto,Arial,sans-serif;background:radial-gradient(900px 500px at 85% -10%,#2a1f7a55,transparent),var(--ink);color:var(--text);min-height:100vh;line-height:1.5}
+button,input{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--cyan);outline-offset:2px}
+.hidden{display:none!important}
+.btn{border:0;border-radius:12px;padding:11px 18px;font-weight:700;cursor:pointer;background:linear-gradient(90deg,var(--violet),#48dbfb);color:#fff;transition:filter .2s,transform .2s}
+.btn:hover:not(:disabled){filter:brightness(1.1);transform:translateY(-1px)}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.btn.ghost{background:transparent;border:1px solid var(--line);color:var(--muted)}
+.btn.ghost:hover:not(:disabled){border-color:var(--violet);color:var(--text)}
+.btn.small{padding:8px 12px;font-size:.82rem;border-radius:10px}
+input[type=text],input[type=password],input[type=url]{width:100%;background:#0d0926;border:1px solid var(--line);border-radius:12px;padding:12px 14px;transition:border-color .2s}
+input:focus{border-color:var(--violet);outline:none}
+input.invalid{border-color:var(--bad)}
+label{display:block;font-weight:600;font-size:.9rem;margin-bottom:6px}
+.hint{font-size:.78rem;color:var(--muted);margin-top:6px;min-height:1.1em;word-break:break-all}
+.hint.err{color:var(--bad)}
+
+/* app */
+header{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;max-width:1120px;margin:0 auto;padding:24px 20px 8px}
+header h1{font-size:1.5rem;font-weight:800;letter-spacing:.3px}
+header h1 span{color:var(--cyan)}
+.notice{max-width:1120px;margin:8px auto 0;padding:0 20px}
+.notice div{background:#1d1650;border:1px solid var(--line);border-left:3px solid var(--cyan);border-radius:12px;padding:12px 14px;font-size:.84rem;color:#d4d1f5}
+.grid{max-width:1120px;margin:20px auto 40px;padding:0 20px;display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:32px;align-items:start}
+section.box{background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:22px;margin-bottom:20px}
+section.box h2{font-size:1.05rem;margin-bottom:4px}
+section.box>p{color:var(--muted);font-size:.83rem;margin-bottom:18px}
+.field{margin-bottom:16px}
+.field:last-child{margin-bottom:0}
+.inline{display:flex;gap:8px}
+.inline input{flex:1;min-width:0}
+.logo-row{display:flex;gap:14px;align-items:center;margin-bottom:10px}
+.logo-thumb{width:64px;height:64px;border-radius:50%;background:#fff;padding:3px;flex:none;box-shadow:0 0 0 2px var(--violet),0 0 24px #7c6cff66}
+.logo-thumb img{width:100%;height:100%;border-radius:50%;object-fit:cover;display:block}
+.savebar{position:sticky;bottom:12px;display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;background:#0f0a2bee;backdrop-filter:blur(8px);border:1px solid var(--line);border-radius:16px;padding:12px 14px}
+.state{font-size:.84rem;color:var(--muted)}
+.state.dirty{color:#ffb454}
+.state.clean{color:var(--ok)}
+
+/* preview */
+aside{position:sticky;top:20px}
+.seg{display:flex;background:#0d0926;border:1px solid var(--line);border-radius:12px;padding:4px;margin-bottom:14px}
+.seg button{flex:1;border:0;background:transparent;color:var(--muted);padding:8px;border-radius:9px;font-weight:600;font-size:.82rem;cursor:pointer}
+.seg button[aria-pressed=true]{background:var(--panel2);color:var(--text)}
+.phone{border:1px solid var(--line);border-radius:34px;background:#0d0926;padding:14px;box-shadow:0 20px 50px #000a}
+.screen{background:var(--panel);border:1px solid var(--line);border-radius:24px;padding:26px 18px;text-align:center;min-height:430px}
+.pv-logo{width:84px;height:84px;margin:0 auto 14px;border-radius:50%;background:#fff;padding:4px;box-shadow:0 0 28px #6c5ce780}
+.pv-logo img{width:100%;height:100%;border-radius:50%;object-fit:cover;display:block}
+.pv-name{font-size:1.15rem;font-weight:800;text-transform:uppercase;word-break:break-word}
+.pv-sub{font-size:.75rem;color:var(--muted);margin:4px 0 20px}
+.pv-btn{background:linear-gradient(90deg,#6c5ce7,#48dbfb);border-radius:50px;padding:12px;font-weight:700;font-size:.85rem}
+.pv-social{display:flex;justify-content:center;gap:14px;margin-top:22px}
+.pv-social span{width:46px;height:46px;border-radius:50%;background:#100c2b;border:1px solid var(--line);display:flex;align-items:center;justify-content:center}
+.pv-social svg,.pv-task svg{width:24px;height:24px}
+.pv-badge{display:inline-block;border:1px solid var(--violet);background:#6c5ce733;color:#a29bfe;border-radius:20px;padding:4px 14px;font-size:.78rem;font-weight:700;margin:14px 0 18px}
+.pv-task{display:flex;align-items:center;gap:10px;text-align:left;background:#100c2b;border:1px solid var(--line);border-radius:14px;padding:10px 12px;margin-bottom:10px;font-size:.84rem}
+.pv-task small{display:block;color:var(--muted);font-size:.7rem;word-break:break-all}
+
+#toast{position:fixed;left:50%;bottom:28px;transform:translateX(-50%) translateY(20px);background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:12px 18px;font-size:.88rem;opacity:0;pointer-events:none;transition:opacity .25s,transform .25s;z-index:20;max-width:90vw}
+#toast.show{opacity:1;transform:translateX(-50%)}
+#toast.bad{border-color:var(--bad)}#toast.ok{border-color:var(--ok)}
+
+@media (max-width:900px){.grid{grid-template-columns:1fr}aside{position:static}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+
+<div id="app">
+  <header>
+    <h1>ZONEX <span>control room</span></h1>
+  </header>
+  <div class="notice"><div>Changes are saved in this browser for now, so only this device shows them. Once Firebase is connected, every visitor will see your changes.</div></div>
+
+  <div class="grid">
+    <form id="settings" novalidate>
+      <section class="box">
+        <h2>Site identity</h2>
+        <p>The logo and name shown at the top of the website.</p>
+        <div class="field">
+          <label>Logo</label>
+          <div class="logo-row">
+            <div class="logo-thumb"><img id="logo-thumb" alt="Current logo"></div>
+            <div>
+              <button class="btn ghost small" type="button" id="logo-upload">Upload image</button>
+              <button class="btn ghost small" type="button" id="logo-reset">Use default</button>
+              <input type="file" id="logo-file" accept="image/*" class="hidden">
+            </div>
+          </div>
+          <input type="url" id="f-logo" placeholder="Or paste an image link (https://...)">
+          <div class="hint" id="h-logo"></div>
+        </div>
+        <div class="field">
+          <label for="f-name">Site name</label>
+          <input type="text" id="f-name" maxlength="40">
+          <div class="hint" id="h-name"></div>
+        </div>
+      </section>
+
+      <section class="box">
+        <h2>Landing page links</h2>
+        <p>The three round icons on the first screen.</p>
+        <div class="field"><label for="f-yt">YouTube</label><div class="inline"><input type="url" id="f-yt"><button class="btn ghost small" type="button" data-test="f-yt">Test</button></div><div class="hint" id="h-yt"></div></div>
+        <div class="field"><label for="f-tg">Telegram</label><div class="inline"><input type="url" id="f-tg"><button class="btn ghost small" type="button" data-test="f-tg">Test</button></div><div class="hint" id="h-tg"></div></div>
+        <div class="field"><label for="f-tt">TikTok</label><div class="inline"><input type="url" id="f-tt"><button class="btn ghost small" type="button" data-test="f-tt">Test</button></div><div class="hint" id="h-tt"></div></div>
+      </section>
+
+      <section class="box">
+        <h2>Links after the 5 steps</h2>
+        <p>The three tasks visitors must open before the key unlocks.</p>
+        <div class="field"><label for="f-t1">Task 1: YouTube</label><div class="inline"><input type="url" id="f-t1"><button class="btn ghost small" type="button" data-test="f-t1">Test</button></div><div class="hint" id="h-t1"></div></div>
+        <div class="field"><label for="f-t2">Task 2: Telegram</label><div class="inline"><input type="url" id="f-t2"><button class="btn ghost small" type="button" data-test="f-t2">Test</button></div><div class="hint" id="h-t2"></div></div>
+        <div class="field"><label for="f-t3">Task 3: TikTok</label><div class="inline"><input type="url" id="f-t3"><button class="btn ghost small" type="button" data-test="f-t3">Test</button></div><div class="hint" id="h-t3"></div></div>
+      </section>
+
+      <div class="savebar">
+        <span class="state clean" id="state">All changes saved</span>
+        <span>
+          <button class="btn ghost small" type="button" id="reset">Reset to defaults</button>
+          <button class="btn" type="submit" id="save">Save changes</button>
+        </span>
+      </div>
+    </form>
+
+    <aside aria-label="Live preview">
+      <div class="seg">
+        <button type="button" id="seg-landing" aria-pressed="true">Landing page</button>
+        <button type="button" id="seg-tasks" aria-pressed="false">After 5 steps</button>
+      </div>
+      <div class="phone"><div class="screen">
+        <div class="pv-logo"><img id="pv-logo" alt=""></div>
+        <div class="pv-name" id="pv-name"></div>
+        <div class="pv-sub">Gaming Voice Soundboard</div>
+        <div id="pv-landing">
+          <div class="pv-btn">Start getting your key</div>
+          <div class="pv-social" id="pv-social"></div>
+        </div>
+        <div id="pv-tasks" class="hidden">
+          <div class="pv-badge">Final step</div>
+          <div id="pv-task-list"></div>
+        </div>
+      </div></div>
+    </aside>
+  </div>
+</div>
+<div id="toast" role="status"></div>
+
+<script>
+(() => {
+  const DEFAULTS = {
+    site_name: 'ZONEX FF VOICE',
+    logo_url: 'https://via.placeholder.com/150/6c5ce7/ffffff?text=ZONEX',
+    landing_yt: 'https://youtube.com', landing_tg: 'https://telegram.org', landing_tt: 'https://tiktok.com',
+    task1_url: 'https://youtube.com', task2_url: 'https://telegram.org', task3_url: 'https://tiktok.com'
+  };
+  const KEYS = Object.keys(DEFAULTS);
+  const FIELD = { site_name:'f-name', logo_url:'f-logo', landing_yt:'f-yt', landing_tg:'f-tg', landing_tt:'f-tt', task1_url:'f-t1', task2_url:'f-t2', task3_url:'f-t3' };
+  const HINT = { site_name:'h-name', logo_url:'h-logo', landing_yt:'h-yt', landing_tg:'h-tg', landing_tt:'h-tt', task1_url:'h-t1', task2_url:'h-t2', task3_url:'h-t3' };
+  const ICONS = {
+    yt:'<svg viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="4" fill="#FF0000"/><path d="M10 9L15 12L10 15V9Z" fill="#fff"/></svg>',
+    tg:'<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="#24A1DE"/><path d="M16.9 7.8L15.1 16.5C15 17.1 14.6 17.3 14.1 17L11.2 14.8L9.8 16.2C9.6 16.4 9.5 16.5 9.2 16.5L9.4 13.5L14.9 8.5C15.1 8.3 14.8 8.2 14.5 8.4L7.7 12.7L4.8 11.8C4.2 11.6 4.2 11.2 4.9 10.9L16.1 6.6C16.6 6.4 17.1 6.7 16.9 7.8Z" fill="#fff"/></svg>',
+    tt:'<svg viewBox="0 0 24 24"><path d="M16.6 5.82C15.9 5.04 15.54 4.04 15.54 3H12.45V15.4C12.43 16.07 12.14 16.71 11.66 17.17C11.18 17.64 10.53 17.9 9.86 17.9C8.44 17.9 7.26 16.74 7.26 15.3C7.26 13.58 8.92 12.29 10.63 12.82V9.66C7.18 9.2 4.16 11.88 4.16 15.3C4.16 18.63 6.92 21 9.85 21C12.99 21 15.54 18.45 15.54 15.3V9.01C16.79 9.91 18.3 10.39 19.84 10.39V7.3C19.84 7.3 17.96 7.39 16.6 5.82Z" fill="#fff"/></svg>'
+  };
+
+  // Storage adapter: swap these four lines for Firebase later.
+  const Store = {
+    get: k => { try { return localStorage.getItem(k); } catch (e) { return null; } },
+    set: (k, v) => localStorage.setItem(k, v),
+    remove: k => { try { localStorage.removeItem(k); } catch (e) {} }
+  };
+
+  const $ = id => document.getElementById(id);
+  let toastTimer;
+  function toast(msg, type) {
+    const t = $('toast');
+    t.textContent = msg; t.className = 'show ' + (type || '');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => t.className = '', 2600);
+  }
+
+  /* ---------- settings ---------- */
+  let saved = {}, draft = {};
+  const isHttp = u => { try { const p = new URL(u).protocol; return p === 'https:' || p === 'http:'; } catch (e) { return false; } };
+  const isLogo = u => /^data:image\/(png|jpeg|webp|gif);base64,/.test(u) || isHttp(u);
+  const host = u => { try { return new URL(u).hostname; } catch (e) { return ''; } };
+
+  function validate(show) {
+    const errs = [];
+    KEYS.forEach(k => {
+      const v = draft[k].trim(), input = $(FIELD[k]), hint = $(HINT[k]);
+      let msg = '';
+      if (k === 'site_name') { if (!v) msg = 'Enter a site name.'; }
+      else if (k === 'logo_url') { if (v && !isLogo(v)) msg = 'Use an image link that starts with https://'; }
+      else if (!isHttp(v)) msg = 'Link must start with https://';
+      if (show) {
+        input.classList.toggle('invalid', !!msg);
+        hint.classList.toggle('err', !!msg);
+        hint.textContent = msg || (k === 'site_name' ? '' : k === 'logo_url' ? (v.startsWith('data:') ? 'Uploaded image in use.' : '') : 'Opens ' + host(v));
+      }
+      if (msg) errs.push(msg);
+    });
+    return errs;
+  }
+
+  function render() {
+    const name = draft.site_name.trim() || DEFAULTS.site_name;
+    const logo = draft.logo_url.trim() && isLogo(draft.logo_url.trim()) ? draft.logo_url.trim() : DEFAULTS.logo_url;
+    $('pv-name').textContent = name;
+    $('pv-logo').src = logo; $('logo-thumb').src = logo;
+    $('pv-social').innerHTML = ['yt','tg','tt'].map(i => '<span>' + ICONS[i] + '</span>').join('');
+    const t = [['yt','YouTube','task1_url'],['tg','Telegram','task2_url'],['tt','TikTok','task3_url']];
+    const list = $('pv-task-list'); list.textContent = '';
+    t.forEach(([i, label, k]) => {
+      const d = document.createElement('div'); d.className = 'pv-task';
+      d.innerHTML = ICONS[i];
+      const s = document.createElement('div');
+      s.textContent = label;
+      const sm = document.createElement('small'); sm.textContent = host(draft[k].trim()) || 'No link';
+      s.appendChild(sm); d.appendChild(s); list.appendChild(d);
+    });
+    validate(true);
+    const dirty = JSON.stringify(draft) !== JSON.stringify(saved);
+    const st = $('state');
+    st.textContent = dirty ? 'Unsaved changes' : 'All changes saved';
+    st.className = 'state ' + (dirty ? 'dirty' : 'clean');
+  }
+
+  function fillInputs() {
+    KEYS.forEach(k => { $(FIELD[k]).value = (k === 'logo_url' && draft[k].startsWith('data:')) ? '' : draft[k]; });
+    $('f-logo').placeholder = draft.logo_url.startsWith('data:') ? 'Uploaded image in use' : 'Or paste an image link (https://...)';
+  }
+
+  function openApp() {
+        KEYS.forEach(k => { saved[k] = Store.get(k) || DEFAULTS[k]; });
+    draft = { ...saved }; fillInputs(); render();
+  }
+
+  KEYS.forEach(k => $(FIELD[k]).addEventListener('input', e => {
+    if (k === 'logo_url') $('f-logo').placeholder = 'Or paste an image link (https://...)';
+    draft[k] = e.target.value; render();
+  }));
+
+  document.querySelectorAll('[data-test]').forEach(b => b.addEventListener('click', () => {
+    const v = $(b.dataset.test).value.trim();
+    if (!isHttp(v)) { toast('Enter a valid link first.', 'bad'); return; }
+    window.open(v, '_blank', 'noopener,noreferrer');
+  }));
+
+  $('settings').addEventListener('submit', e => {
+    e.preventDefault();
+    if (validate(true).length) { toast('Fix the highlighted fields first.', 'bad'); return; }
+    try {
+      KEYS.forEach(k => {
+        const v = draft[k].trim();
+        if (!v || (k === 'logo_url' && v === DEFAULTS.logo_url)) Store.remove(k); else Store.set(k, v);
+        saved[k] = v || DEFAULTS[k];
+      });
+    } catch (x) { toast('Could not save. The logo may be too large.', 'bad'); return; }
+    draft = { ...saved }; fillInputs(); render();
+    toast('Changes saved', 'ok');
+  });
+
+  $('reset').addEventListener('click', () => {
+    if (!confirm('Reset the name, logo and all links to their defaults?')) return;
+    draft = { ...DEFAULTS }; fillInputs(); render();
+    toast('Defaults restored. Press Save changes to apply.');
+  });
+
+  /* ---------- logo upload ---------- */
+  $('logo-upload').addEventListener('click', () => $('logo-file').click());
+  $('logo-reset').addEventListener('click', () => { draft.logo_url = DEFAULTS.logo_url; fillInputs(); render(); });
+  $('logo-file').addEventListener('change', e => {
+    const f = e.target.files[0]; e.target.value = '';
+    if (!f) return;
+    if (!f.type.startsWith('image/') || f.size > 8 * 1024 * 1024) { toast('Choose an image under 8 MB.', 'bad'); return; }
+    const img = new Image(), url = URL.createObjectURL(f);
+    img.onload = () => {
+      const s = Math.min(1, 256 / Math.max(img.width, img.height));
+      const c = document.createElement('canvas');
+      c.width = Math.round(img.width * s); c.height = Math.round(img.height * s);
+      c.getContext('2d').drawImage(img, 0, 0, c.width, c.height);
+      draft.logo_url = f.type === 'image/jpeg' ? c.toDataURL('image/jpeg', 0.9) : c.toDataURL('image/png');
+      URL.revokeObjectURL(url); fillInputs(); render();
+    };
+    img.onerror = () => toast('That image could not be read.', 'bad');
+    img.src = url;
+  });
+
+  /* ---------- preview toggle ---------- */
+  function seg(landing) {
+    $('pv-landing').classList.toggle('hidden', !landing);
+    $('pv-tasks').classList.toggle('hidden', landing);
+    $('seg-landing').setAttribute('aria-pressed', landing);
+    $('seg-tasks').setAttribute('aria-pressed', !landing);
+  }
+  $('seg-landing').addEventListener('click', () => seg(true));
+  $('seg-tasks').addEventListener('click', () => seg(false));
+
+  window.addEventListener('beforeunload', e => {
+    if (JSON.stringify(draft) !== JSON.stringify(saved)) { e.preventDefault(); e.returnValue = ''; }
+  });
+
+  openApp();
+})();
+</script>
+</body>
+</html>

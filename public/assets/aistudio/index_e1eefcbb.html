@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZONEX Premium Key Generator</title>
+    <style>
+        :root {
+            --bg-main: #09071a;
+            --card-bg: #16113a;
+            --primary: #6c5ce7;
+            --accent: #00cec9;
+            --text-main: #ffffff;
+            --text-muted: #a29bfe;
+            --border-color: #2d2463;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 24px;
+            width: 100%;
+            max-width: 460px;
+            padding: 32px 24px;
+            text-align: center;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+            position: relative;
+        }
+
+        .logo-wrapper {
+            width: 110px;
+            height: 110px;
+            margin: 0 auto 20px;
+            border-radius: 50%;
+            background: #ffffff;
+            padding: 6px;
+            box-shadow: 0 0 25px rgba(108, 92, 231, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .logo-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+
+        .site-title {
+            font-size: 1.75rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+            margin-bottom: 6px;
+            text-transform: uppercase;
+        }
+
+        .subtitle {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 24px;
+        }
+
+        .hero-heading {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            letter-spacing: 0.5px;
+        }
+
+        .description {
+            font-size: 0.88rem;
+            color: #d1d0e8;
+            line-height: 1.5;
+            margin-bottom: 28px;
+        }
+
+        .btn-primary {
+            width: 100%;
+            padding: 16px 20px;
+            border: none;
+            border-radius: 50px;
+            background: linear-gradient(90deg, #6c5ce7 0%, #48dbfb 100%);
+            color: #ffffff;
+            font-size: 1.05rem;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 8px 25px rgba(108, 92, 231, 0.45);
+            transition: transform 0.2s, filter 0.2s, opacity 0.2s;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-primary:hover:not(:disabled) {
+            transform: translateY(-2px);
+            filter: brightness(1.08);
+        }
+
+        .btn-primary:disabled {
+            opacity: 0.55;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .social-row {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 18px;
+            margin-top: 28px;
+        }
+
+        .social-btn {
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            background: #100c2b;
+            border: 1px solid var(--border-color);
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            text-decoration: none;
+            transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .social-btn:hover {
+            transform: translateY(-3px);
+            border-color: var(--primary);
+            box-shadow: 0 6px 18px rgba(108, 92, 231, 0.35);
+        }
+
+        .social-btn svg {
+            width: 26px;
+            height: 26px;
+            display: block;
+        }
+
+        .social-btn.completed {
+            border-color: #00b894;
+            box-shadow: 0 0 15px rgba(0, 184, 148, 0.4);
+        }
+
+        .social-btn.completed::after {
+            content: '✓';
+            position: absolute;
+            top: -4px;
+            right: -4px;
+            width: 18px;
+            height: 18px;
+            background: #00b894;
+            color: #fff;
+            font-size: 11px;
+            font-weight: bold;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .footer {
+            margin-top: 28px;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        .step-badge {
+            display: inline-block;
+            background: rgba(108, 92, 231, 0.2);
+            border: 1px solid var(--primary);
+            color: #a29bfe;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-bottom: 18px;
+        }
+
+        .timer-circle {
+            width: 110px;
+            height: 110px;
+            border-radius: 50%;
+            border: 4px solid var(--primary);
+            margin: 16px auto 24px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: #0f0b29;
+            box-shadow: 0 0 25px rgba(108, 92, 231, 0.3);
+        }
+
+        .timer-number {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: #48dbfb;
+            line-height: 1;
+        }
+
+        .timer-label {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+
+        .task-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin: 20px 0 24px;
+        }
+
+        .task-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #100c2b;
+            border: 1px solid var(--border-color);
+            padding: 12px 16px;
+            border-radius: 14px;
+            text-decoration: none;
+            color: #fff;
+            transition: border-color 0.2s, background 0.2s;
+            cursor: pointer;
+        }
+
+        .task-item:hover {
+            border-color: var(--primary);
+            background: #151038;
+        }
+
+        .task-item.done {
+            border-color: #00b894;
+            background: rgba(0, 184, 148, 0.08);
+        }
+
+        .task-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .task-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: #1a1442;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .task-icon svg {
+            width: 20px;
+            height: 20px;
+            display: block;
+        }
+
+        .task-title {
+            font-size: 0.95rem;
+            font-weight: 600;
+            text-align: left;
+        }
+
+        .task-status {
+            font-size: 0.8rem;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 12px;
+            background: rgba(108, 92, 231, 0.25);
+            color: #a29bfe;
+        }
+
+        .task-item.done .task-status {
+            background: #00b894;
+            color: #ffffff;
+        }
+
+        .key-box {
+            background: #09071a;
+            border: 2px dashed #00cec9;
+            padding: 16px;
+            border-radius: 14px;
+            font-family: monospace;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #00cec9;
+            letter-spacing: 1.5px;
+            margin: 18px 0;
+            word-break: break-all;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="logo-wrapper">
+        <img id="display-logo" src="https://via.placeholder.com/150/6c5ce7/ffffff?text=ZONEX" alt="Logo">
+    </div>
+    <h1 class="site-title" id="display-site-name">ZONEX FF VOICE</h1>
+    <p class="subtitle">Gaming Voice Soundboard</p>
+
+    <!-- Landing View -->
+    <div id="view-landing">
+        <h2 class="hero-heading">ZONEX FF VOICE KEY GENERATE</h2>
+        <p class="description">আপনার ডিভাইসের জন্য একটি প্রিমিয়াম কি তৈরি করুন। প্রতিটি কি ২৪ ঘণ্টার জন্য কার্যকর হবে。</p>
+        
+        <button type="button" class="btn-primary" id="btn-start-steps">
+            🔑 Key পাওয়ার ধাপ শুরু করুন
+        </button>
+
+        <div class="social-row">
+            <a id="link-landing-yt" class="social-btn" aria-label="YouTube">
+                <svg viewBox="0 0 24 24" fill="none">
+                    <rect x="2" y="5" width="20" height="14" rx="4" fill="#FF0000"/>
+                    <path d="M10 9L15 12L10 15V9Z" fill="#FFFFFF"/>
+                </svg>
+            </a>
+            <a id="link-landing-tg" class="social-btn" aria-label="Telegram">
+                <svg viewBox="0 0 24 24" fill="none">
+                    <circle cx="12" cy="12" r="10" fill="#24A1DE"/>
+                    <path d="M16.9 7.8L15.1 16.5C15 17.1 14.6 17.3 14.1 17L11.2 14.8L9.8 16.2C9.6 16.4 9.5 16.5 9.2 16.5L9.4 13.5L14.9 8.5C15.1 8.3 14.8 8.2 14.5 8.4L7.7 12.7L4.8 11.8C4.2 11.6 4.2 11.2 4.9 10.9L16.1 6.6C16.6 6.4 17.1 6.7 16.9 7.8Z" fill="#FFFFFF"/>
+                </svg>
+            </a>
+            <a id="link-landing-tt" class="social-btn" aria-label="TikTok">
+                <svg viewBox="0 0 24 24" fill="none">
+                    <path d="M16.6 5.82C15.9165 5.03962 15.5397 4.03743 15.54 3H12.45V15.4C12.4262 16.071 12.1429 16.7066 11.6597 17.1729C11.1764 17.6392 10.531 17.8999 9.86 17.9C8.44 17.9 7.26 16.74 7.26 15.3C7.26 13.58 8.92 12.29 10.63 12.82V9.66C7.18 9.2 4.16 11.88 4.16 15.3C4.16 18.63 6.92 21 9.85 21C12.99 21 15.54 18.45 15.54 15.3V9.01C16.793 9.90985 18.2974 10.3926 19.84 10.39V7.3C19.84 7.3 17.96 7.39 16.6 5.82Z" fill="#FFFFFF"/>
+                </svg>
+            </a>
+        </div>
+    </div>
+
+    <!-- Timer Step View -->
+    <div id="view-timer" class="hidden">
+        <div class="step-badge" id="step-indicator">ধাপ ১ / ৫</div>
+        <h2 class="hero-heading">অপেক্ষা করুন...</h2>
+        <p class="description">পরবর্তী ধাপে যাওয়ার জন্য নিচের সময় শেষ হওয়া পর্যন্ত অপেক্ষা করুন。</p>
+        
+        <div class="timer-circle">
+            <span class="timer-number" id="timer-count">30</span>
+            <span class="timer-label">সেকেন্ড</span>
+        </div>
+
+        <button type="button" class="btn-primary" id="btn-next-step" disabled>
+            অপেক্ষা করুন...
+        </button>
+    </div>
+
+    <!-- Final Task View -->
+    <div id="view-tasks" class="hidden">
+        <div class="step-badge">চূড়ান্ত ধাপ</div>
+        <h2 class="hero-heading">টাস্কগুলো সম্পন্ন করুন</h2>
+        <p class="description">Key আনলক করতে নিচের ৩টি সোশ্যাল মিডিয়া লিঙ্কে ভিজিট করুন。</p>
+
+        <div class="task-list">
+            <a id="task-btn-1" class="task-item">
+                <div class="task-left">
+                    <div class="task-icon">
+                        <svg viewBox="0 0 24 24" fill="none">
+                            <rect x="2" y="5" width="20" height="14" rx="4" fill="#FF0000"/>
+                            <path d="M10 9L15 12L10 15V9Z" fill="#FFFFFF"/>
+                        </svg>
+                    </div>
+                    <span class="task-title">YouTube সাবস্ক্রাইব করুন</span>
+                </div>
+                <span class="task-status" id="status-task-1">ভিজিট</span>
+            </a>
+
+            <a id="task-btn-2" class="task-item">
+                <div class="task-left">
+                    <div class="task-icon">
+                        <svg viewBox="0 0 24 24" fill="none">
+                            <circle cx="12" cy="12" r="10" fill="#24A1DE"/>
+                            <path d="M16.9 7.8L15.1 16.5C15 17.1 14.6 17.3 14.1 17L11.2 14.8L9.8 16.2C9.6 16.4 9.5 16.5 9.2 16.5L9.4 13.5L14.9 8.5C15.1 8.3 14.8 8.2 14.5 8.4L7.7 12.7L4.8 11.8C4.2 11.6 4.2 11.2 4.9 10.9L16.1 6.6C16.6 6.4 17.1 6.7 16.9 7.8Z" fill="#FFFFFF"/>
+                        </svg>
+                    </div>
+                    <span class="task-title">Telegram জয়েন করুন</span>
+                </div>
+                <span class="task-status" id="status-task-2">ভিজিট</span>
+            </a>
+
+            <a id="task-btn-3" class="task-item">
+                <div class="task-left">
+                    <div class="task-icon">
+                        <svg viewBox="0 0 24 24" fill="none">
+                            <path d="M16.6 5.82C15.9165 5.03962 15.5397 4.03743 15.54 3H12.45V15.4C12.4262 16.071 12.1429 16.7066 11.6597 17.1729C11.1764 17.6392 10.531 17.8999 9.86 17.9C8.44 17.9 7.26 16.74 7.26 15.3C7.26 13.58 8.92 12.29 10.63 12.82V9.66C7.18 9.2 4.16 11.88 4.16 15.3C4.16 18.63 6.92 21 9.85 21C12.99 21 15.54 18.45 15.54 15.3V9.01C16.793 9.90985 18.2974 10.3926 19.84 10.39V7.3C19.84 7.3 17.96 7.39 16.6 5.82Z" fill="#FFFFFF"/>
+                        </svg>
+                    </div>
+                    <span class="task-title">TikTok ফলো করুন</span>
+                </div>
+                <span class="task-status" id="status-task-3">ভিজিট</span>
+            </a>
+        </div>
+
+        <button type="button" class="btn-primary" id="btn-claim-key" disabled>
+            🔒 সবগুলো টাস্ক সম্পন্ন করুন (0/3)
+        </button>
+    </div>
+
+    <!-- Key Completion View -->
+    <div id="view-complete" class="hidden">
+        <div class="step-badge" style="border-color: #00b894; color: #00cec9;">সফল হয়েছে!</div>
+        <h2 class="hero-heading">আপনার প্রিমিয়াম Key প্রস্তুত</h2>
+        <p class="description">নিচের Key টি কপি করে অ্যাপে ব্যবহার করুন。</p>
+        
+        <div class="key-box" id="generated-key">ZONEX-VIP-9482-FF</div>
+
+        <button type="button" class="btn-primary" id="btn-copy-key">
+            📋 Key কপি করুন
+        </button>
+    </div>
+
+    <div class="footer">
+        &copy; 2026 ZONEX ZIXU
+    </div>
+</div>
+
+<script>
+    const stepDurations = [30, 30, 30, 30, 30];
+    let currentStep = 0;
+    let timerInterval = null;
+    let completedTasks = { 1: false, 2: false, 3: false };
+
+    const config = {
+        siteName: localStorage.getItem('site_name') || 'ZONEX FF VOICE',
+        logoUrl: localStorage.getItem('logo_url') || 'https://via.placeholder.com/150/6c5ce7/ffffff?text=ZONEX',
+        landingYt: localStorage.getItem('landing_yt') || 'https://youtube.com',
+        landingTg: localStorage.getItem('landing_tg') || 'https://telegram.org',
+        landingTt: localStorage.getItem('landing_tt') || 'https://tiktok.com',
+        task1Url: localStorage.getItem('task1_url') || 'https://youtube.com',
+        task2Url: localStorage.getItem('task2_url') || 'https://telegram.org',
+        task3Url: localStorage.getItem('task3_url') || 'https://tiktok.com'
+    };
+
+    function applyConfig() {
+        document.getElementById('display-site-name').textContent = config.siteName;
+        document.title = config.siteName + ' - Premium Key Generator';
+        if (config.logoUrl.trim() !== '') {
+            document.getElementById('display-logo').src = config.logoUrl;
+        }
+    }
+
+    function openExternalSafely(event, url) {
+        event.preventDefault();
+        event.stopPropagation();
+        const targetUrl = url && url.trim() !== '' ? url : 'https://google.com';
+        const newWin = window.open(targetUrl, '_blank', 'noopener,noreferrer');
+        if (newWin) {
+            newWin.opener = null;
+        }
+    }
+
+    function switchView(viewId) {
+        ['view-landing', 'view-timer', 'view-tasks', 'view-complete'].forEach(id => {
+            document.getElementById(id).classList.add('hidden');
+        });
+        document.getElementById(viewId).classList.remove('hidden');
+        saveSessionState();
+    }
+
+    function saveSessionState() {
+        const activeView = ['view-landing', 'view-timer', 'view-tasks', 'view-complete'].find(
+            id => !document.getElementById(id).classList.contains('hidden')
+        );
+        sessionStorage.setItem('zonex_state', JSON.stringify({
+            view: activeView,
+            step: currentStep,
+            tasks: completedTasks
+        }));
+    }
+
+    function restoreSessionState() {
+        const saved = sessionStorage.getItem('zonex_state');
+        if (!saved) return;
+        try {
+            const state = JSON.parse(saved);
+            if (state.tasks) {
+                completedTasks = state.tasks;
+                [1, 2, 3].forEach(num => {
+                    if (completedTasks[num]) markTaskDoneUI(num);
+                });
+                updateClaimButton();
+            }
+            if (state.view === 'view-timer') {
+                currentStep = state.step || 0;
+                startStepTimer(currentStep);
+            } else if (state.view === 'view-tasks') {
+                switchView('view-tasks');
+            } else if (state.view === 'view-complete') {
+                showCompletionView();
+            }
+        } catch (e) {}
+    }
+
+    function startStepTimer(stepIndex) {
+        clearInterval(timerInterval);
+        currentStep = stepIndex;
+        switchView('view-timer');
+
+        const bnDigits = ['১', '২', '৩', '৪', '৫'];
+        document.getElementById('step-indicator').textContent = `ধাপ ${bnDigits[stepIndex]} / ৫`;
+
+        let remaining = stepDurations[stepIndex];
+        const countEl = document.getElementById('timer-count');
+        const nextBtn = document.getElementById('btn-next-step');
+
+        countEl.textContent = remaining;
+        nextBtn.disabled = true;
+        nextBtn.textContent = `অপেক্ষা করুন (${remaining}s)`;
+
+        timerInterval = setInterval(() => {
+            remaining--;
+            if (remaining > 0) {
+                countEl.textContent = remaining;
+                nextBtn.textContent = `অপেক্ষা করুন (${remaining}s)`;
+            } else {
+                clearInterval(timerInterval);
+                countEl.textContent = '0';
+                nextBtn.disabled = false;
+                nextBtn.textContent = stepIndex < stepDurations.length - 1 ? 'পরবর্তী ধাপ ➔' : 'চূড়ান্ত ধাপে যান ➔';
+            }
+        }, 1000);
+    }
+
+    function markTaskDoneUI(taskNum) {
+        const item = document.getElementById(`task-btn-${taskNum}`);
+        const status = document.getElementById(`status-task-${taskNum}`);
+        item.classList.add('done');
+        status.textContent = 'সম্পন্ন ✓';
+    }
+
+    function updateClaimButton() {
+        const count = Object.values(completedTasks).filter(Boolean).length;
+        const claimBtn = document.getElementById('btn-claim-key');
+        if (count === 3) {
+            claimBtn.disabled = false;
+            claimBtn.textContent = '🔓 Key আনলক করুন';
+        } else {
+            claimBtn.disabled = true;
+            claimBtn.textContent = `🔒 সবগুলো টাস্ক সম্পন্ন করুন (${count}/3)`;
+        }
+    }
+
+    function handleTaskClick(event, taskNum, url) {
+        openExternalSafely(event, url);
+        completedTasks[taskNum] = true;
+        markTaskDoneUI(taskNum);
+        updateClaimButton();
+        saveSessionState();
+    }
+
+    function generateRandomKey() {
+        const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+        let part1 = '';
+        let part2 = '';
+        for (let i = 0; i < 4; i++) {
+            part1 += chars.charAt(Math.floor(Math.random() * chars.length));
+            part2 += chars.charAt(Math.floor(Math.random() * chars.length));
+        }
+        return `ZONEX-${part1}-${part2}-24H`;
+    }
+function handleTaskClick(event, taskNum, url) {
+        openExternalSafely(event, url);
+        completedTasks[taskNum] = true;
+        markTaskDoneUI(taskNum);
+        updateClaimButton();
+        saveSessionState();
+    }
+
+    function generateRandomKey() {
+        const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+        let part1 = '';
+        let part2 = '';
+        for (let i = 0; i < 4; i++) {
+            part1 += chars.charAt(Math.floor(Math.random() * chars.length));
+            part2 += chars.charAt(Math.floor(Math.random() * chars.length));
+        }
+        return `ZONEX-${part1}-${part2}-24H`;
+    }
+
+    function showCompletionView() {
+        let key = sessionStorage.getItem('zonex_generated_key');
+        if (!key) {
+            key = generateRandomKey();
+            sessionStorage.setItem('zonex_generated_key', key);
+        }
+        document.getElementById('generated-key').textContent = key;
+        switchView('view-complete');
+    }
+
+    document.getElementById('link-landing-yt').addEventListener('click', e => openExternalSafely(e, config.landingYt));
+    document.getElementById('link-landing-tg').addEventListener('click', e => openExternalSafely(e, config.landingTg));
+    document.getElementById('link-landing-tt').addEventListener('click', e => openExternalSafely(e, config.landingTt));
+
+    document.getElementById('btn-start-steps').addEventListener('click', () => startStepTimer(0));
+
+    document.getElementById('btn-next-step').addEventListener('click', () => {
+        if (currentStep < stepDurations.length - 1) {
+            startStepTimer(currentStep + 1);
+        } else {
+            switchView('view-tasks');
+        }
+    });
+
+    document.getElementById('task-btn-1').addEventListener('click', e => handleTaskClick(e, 1, config.task1Url));
+    document.getElementById('task-btn-2').addEventListener('click', e => handleTaskClick(e, 2, config.task2Url));
+    document.getElementById('task-btn-3').addEventListener('click', e => handleTaskClick(e, 3, config.task3Url));
+
+    document.getElementById('btn-claim-key').addEventListener('click', () => {
+        if (Object.values(completedTasks).every(Boolean)) {
+            showCompletionView();
+        }
+    });
+
+    document.getElementById('btn-copy-key').addEventListener('click', function() {
+        const keyText = document.getElementById('generated-key').textContent;
+        navigator.clipboard.writeText(keyText).then(() => {
+            this.textContent = '✅ Key কপি হয়েছে!';
+            setTimeout(() => {
+                this.textContent = '📋 Key কপি করুন';
+            }, 2500);
+        });
+    });
+
+    window.addEventListener('DOMContentLoaded', () => {
+        applyConfig();
+        restoreSessionState();
+    });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,6 @@
+{
+  "name": "Zonex Sound",
+  "description": "Dark AMOLED gaming soundboard, floating overlay widget, audio mixer, and real-time hardware audio lab synced with Firebase.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
